@@ -97,3 +97,21 @@ test("Mock return value", () => {
   expect(myMock()).toBe(true)
 
 })
+
+
+test("filter Test FN", () => {
+  const filterTestFn = jest.fn(num => {
+    log(num)
+  });
+
+  // Make the mock return `true` for the first call,
+  // and `false` for the second call
+  filterTestFn.mockReturnValueOnce(true).mockReturnValueOnce(false);
+
+  const result = [11, 12].filter(num => filterTestFn(num));
+
+  log(result);
+  // > [11]
+  log(filterTestFn.mock.calls[0][0]); // 11
+  log(filterTestFn.mock.calls[1][0]); // 12
+})
