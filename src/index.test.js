@@ -1,7 +1,7 @@
 const sum = require('./index');
 
 
-
+const { log } = console
 
 test("adds 1 + 2 to equal 3", () => {
   expect(sum(1, 2)).toBe(3);
@@ -82,4 +82,18 @@ test("someMockFunctions", () => {
   // had a `name` property whose value was set to 'test'
   expect(SomeMockConstructor.mock.instances[0].name).toEqual('test');
   expect(SomeMockConstructor.mock.instances[1].name).toEqual('hello');
+})
+
+test("Mock return value", () => {
+  const myMock = jest.fn();
+  log(myMock());
+  // > undefined
+
+  myMock.mockReturnValueOnce(10).mockReturnValueOnce('x').mockReturnValue(true);
+
+  // log(myMock(), myMock(), myMock(), myMock());
+  expect(myMock()).toBe(10)
+  expect(myMock()).toBe("x")
+  expect(myMock()).toBe(true)
+
 })
