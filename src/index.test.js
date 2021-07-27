@@ -39,3 +39,16 @@ expect(mockCallback.mock.results[1].value).toBe(43);
 expect(mockCallback.mock.results[2].value).toBe(44);
 
 })
+
+test("this", () => {
+    const myMock = jest.fn();
+
+    const a = new myMock();
+    a.name = "a"
+    const b = {};
+    b.name = "b"
+    const bound = myMock.bind(b);
+    bound();
+    console.log(myMock.mock.instances)
+})
+
