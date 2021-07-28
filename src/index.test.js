@@ -115,3 +115,10 @@ test("filter Test FN", () => {
   log(filterTestFn.mock.calls[0][0]); // 11
   log(filterTestFn.mock.calls[1][0]); // 12
 })
+
+test('mockImplementation', () => {
+  const myMockFn = jest.fn(cb => cb(null, true));
+
+  myMockFn((err, val) => console.log(val));
+  // > true
+})
