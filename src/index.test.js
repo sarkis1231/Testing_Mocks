@@ -1,4 +1,4 @@
-const sum = require('./index');
+const { reverseString, sum } = require('./index');
 
 
 const { log } = console
@@ -101,7 +101,7 @@ test("Mock return value", () => {
 
 test("filter Test FN", () => {
   const filterTestFn = jest.fn(num => {
-    log(num)
+    num
   });
 
   // Make the mock return `true` for the first call,
@@ -110,10 +110,10 @@ test("filter Test FN", () => {
 
   const result = [11, 12].filter(num => filterTestFn(num));
 
-  log(result);
+  result;
   // > [11]
-  log(filterTestFn.mock.calls[0][0]); // 11
-  log(filterTestFn.mock.calls[1][0]); // 12
+  filterTestFn.mock.calls[0][0]; // 11
+  filterTestFn.mock.calls[1][0]; // 12
 })
 
 test('mockImplementation', () => {
@@ -121,4 +121,10 @@ test('mockImplementation', () => {
 
   myMockFn((err, val) => console.log(val));
   // > true
+})
+
+
+test("revers string", () => {
+  const mock = jest.fn((str) => str)
+  expect(mock(reverseString("sako"))).toBe("okas")
 })
